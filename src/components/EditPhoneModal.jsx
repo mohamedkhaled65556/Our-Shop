@@ -1,0 +1,56 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useEdit, useProducts, validationSchema } from "../store";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+
+export default function EditPhoneModal() {
+    const { products, setProducts } = useProducts();
+    const { index, setIndex } = useEdit();
+
+    const [product, setProduct] = useState({})
+    useEffect(() => {
+        setProduct(products[index])
+    }, [index])
+
+    const editNewPhone = (values) => {
+        let copy = [...products]
+        copy[index].name = values.name
+        copy[index].price = values.price
+        copy[index].inStock = values.inStock
+        setProducts(copy)
+        localStorage.setItem("products", JSON.stringify(copy))
+    }
+    return (
+        <dialog id="edit-phone-modal" className="modal">
+            <div className="modal-box">
+                <h3 className="font-bold text-lg">Edit Product</h3>
+                <div className="modal-action">
+                    <Formik onSubmit={(values) => {
+                        editNewPhone(values)
+                        toast.success("Item is Updated", { duration: 3000 })
+                    }}
+                        initialValues={product}
+                        enableReinitialize
+                        validationSchema={validationSchema}>
+                        <Form className="flex flex-col gap-3 w-full">
+                            <Field name="name" type="text" className="input w-full" placeholder="Enter Phone Name" />
+                            <ErrorMessage name="name" className="text-red-500" component={"p"} />
+                            <Field name="price" type="number" className="input w-full" placeholder="Enter Phone Price" />
+                            <ErrorMessage name="price" className="text-red-500" component={"p"} />
+                            <Field name="imgSrc" type="text" className="input w-full" placeholder="Enter Image Link" />
+                            <ErrorMessage name="imgSrc" className="text-red-500" component={"p"} />
+                            <Field component="select" name="inStock" className="select cursor-pointer w-full">
+                                <option value={true}>In Stock</option>
+                                <option value={false}>Out Of Stock</option>
+                            </Field>
+                            <ErrorMessage name="inStock" className="text-red-500" component={"p"} />
+                            <button onClick={() => {
+                                document.getElementById('edit-phone-modal').close()
+                            }} className="btn btn-success w-full">Update Product</button>
+                        </Form>
+                    </Formik>
+                </div>
+            </div>
+        </dialog>
+    )
+}
