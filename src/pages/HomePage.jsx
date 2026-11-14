@@ -5,7 +5,7 @@ export default function HomePage() {
     const { products, setProducts } = useProducts()
 
     return (
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 px-30 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 px-30 py-10">
             {
                 products.map((el, index) => {
                     return (
