@@ -1,7 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import NewPhoneModal from "../components/NewPhoneModal";
-import { useEdit, useProducts } from "../store"
+import { useIndex, useProducts } from "../store"
 import EditPhoneModal from "../components/EditPhoneModal";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from 'sweetalert2';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 export default function AdminPage() {
 
     const { products, setProducts } = useProducts();
-    const { index, setIndex } = useEdit();
+    const { index, setIndex } = useIndex();
 
     const RemoveItem = async (index) => {
         const result = await Swal.fire({

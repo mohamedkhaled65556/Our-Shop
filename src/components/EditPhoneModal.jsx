@@ -1,11 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useEdit, useProducts, validationSchema } from "../store";
+import { useIndex, useProducts, validationSchema } from "../store";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function EditPhoneModal() {
     const { products, setProducts } = useProducts();
-    const { index, setIndex } = useEdit();
+    const { index, setIndex } = useIndex();
 
     const [product, setProduct] = useState({})
     useEffect(() => {

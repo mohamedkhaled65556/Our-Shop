@@ -8,7 +8,7 @@ export const validationSchema = Yup.object({
   inStock: Yup.boolean().required(),
 });
 
-export const useEdit = create((set) => ({
+export const useIndex = create((set) => ({
   index: -1,
   setIndex: (data) => set(() => ({ index: data })),
 }));
