@@ -22,6 +22,7 @@ export default function HomePage() {
                 else copy[indexInCart].qty++
                 setCart(copy)
                 setLimit(limit + 1)
+                localStorage.setItem("cart", JSON.stringify(copy))
             }
             else toast.error("Qty limited to 10 Items", { duration: 3000 })
         }
