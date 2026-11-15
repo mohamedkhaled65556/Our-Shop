@@ -52,7 +52,7 @@ export default function HomePage() {
                                         <br />
                                         {JSON.parse(el.inStock) ? 'In Stock' : 'Out Of Stock'}
                                     </p>
-                                    <label className="btn btn-primary" htmlFor={JSON.parse(el.inStock) ? 'my-drawer-1' : ''} onClick={() => { addToCart(index) }}>Buy Now</label>
+                                    <label className="btn btn-primary" htmlFor={JSON.parse(el.inStock) && (limit < 10) ? 'my-drawer-1' : ''} onClick={() => { addToCart(index) }}>Buy Now</label>
                                 </div>
                             </div>
                         )
