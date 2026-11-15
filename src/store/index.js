@@ -54,3 +54,13 @@ export const useProducts = create((set) => ({
   ],
   setProducts: (data) => set(() => ({ products: [...data] })),
 }));
+
+export const useCart = create((set) => ({
+  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  setCart: (data) => set(() => ({ cart: [...data] })),
+}));
+
+export const useLimit = create((set) => ({
+  limit: 0,
+  setLimit: (data) => set(() => ({ limit: data })),
+}));
