@@ -1,7 +1,9 @@
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainHeader from "./components/MainHeader";
 import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
 	return (
@@ -11,8 +13,9 @@ export default function App() {
 				<MainHeader />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/login" element={<LoginPage />} />
 					<Route path="/admin" element={<AdminPage />} />
-					<Route path="*" element={<h1>Error Page</h1>} />
+					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

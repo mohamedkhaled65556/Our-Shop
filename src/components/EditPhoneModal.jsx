@@ -13,12 +13,24 @@ export default function EditPhoneModal() {
     }, [index])
 
     const editNewPhone = (values) => {
-        let copy = [...products]
-        copy[index].name = values.name
-        copy[index].price = values.price
-        copy[index].inStock = values.inStock
-        setProducts(copy)
-        localStorage.setItem("products", JSON.stringify(copy))
+        let existProduct = products.filter((el) => {
+            return (el.name.toLowerCase().replace(/\s/g, "") == values.name.toLowerCase().replace(/\s/g, ""))
+        })
+        if (existProduct.length == 0) {
+            existProduct = [{ name: "" }]
+        }
+        let isFound = existProduct[0].name.toLowerCase().replace(/\s/g, "") == values.name.toLowerCase().replace(/\s/g, "")
+        if (!isFound) {
+            let copy = [...products]
+            copy[index] = values
+            setProducts(copy)
+            localStorage.setItem("products", JSON.stringify(copy))
+            toast.success("Item is Updated", { duration: 3000 })
+        }
+        else {
+            toast.error("Item is already exist", { duration: 3000 })
+            values.name = product.name
+        }
     }
     return (
         <dialog id="edit-phone-modal" className="modal">
@@ -27,7 +39,6 @@ export default function EditPhoneModal() {
                 <div className="modal-action">
                     <Formik onSubmit={(values) => {
                         editNewPhone(values)
-                        toast.success("Item is Updated", { duration: 3000 })
                     }}
                         initialValues={product}
                         enableReinitialize

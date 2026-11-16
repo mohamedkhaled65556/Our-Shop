@@ -6,10 +6,21 @@ export default function NewPhoneModal() {
     const { products, setProducts } = useProducts();
 
     const addNewPhone = (values) => {
-        let copy = [...products]
-        copy.push(values)
-        setProducts(copy)
-        localStorage.setItem("products", JSON.stringify(copy))
+        let product = products.filter((el) => {
+            return (el.name.toLowerCase().replace(/\s/g, "") == values.name.toLowerCase().replace(/\s/g, ""))
+        })
+        if (product.length == 0) {
+            product = [{ name: "" }]
+        }
+        let isFound = product[0].name.toLowerCase().replace(/\s/g, "") == values.name.toLowerCase().replace(/\s/g, "")
+        if (!isFound) {
+            let copy = [...products]
+            copy.push(values)
+            setProducts(copy)
+            localStorage.setItem("products", JSON.stringify(copy))
+            toast.success("Item is Added", { duration: 3000 })
+        }
+        else toast.error("Item is already exist", { duration: 3000 })
     }
     return (
         <dialog id="new-phone-modal" className="modal">
@@ -18,7 +29,6 @@ export default function NewPhoneModal() {
                 <div className="modal-action">
                     <Formik onSubmit={(values, { resetForm }) => {
                         addNewPhone(values);
-                        toast.success("Item is Added", { duration: 3000 })
                         resetForm();
                     }}
                         initialValues={{ name: "", price: "", inStock: false, imgSrc: "" }}

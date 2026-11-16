@@ -5,6 +5,7 @@ import { useIndex, useProducts } from "../store"
 import EditPhoneModal from "../components/EditPhoneModal";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from 'sweetalert2';
+import SearchAndShowAll from "../components/SearchAndShowAll";
 
 export default function AdminPage() {
 
@@ -26,7 +27,7 @@ export default function AdminPage() {
         if (result.isConfirmed) {
             let copy = [...products]
             copy.splice(index, 1)
-            toast.error("Item Is Deleted", { duration: 3000 })
+            toast.success("Item Is Deleted", { duration: 3000 })
             setProducts(copy)
             localStorage.setItem("products", JSON.stringify(copy))
         }
@@ -44,6 +45,7 @@ export default function AdminPage() {
             <div className="container">
                 <div className="flex items-center justify-between py-4">
                     <h1 className="text-2xl font-bold p-3">Admin Products</h1>
+                    <SearchAndShowAll />
                     <button className="btn btn-primary" onClick={() => document.getElementById('new-phone-modal').showModal()}>Add New Product</button>
                 </div>
                 <table className="table">

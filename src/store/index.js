@@ -8,6 +8,11 @@ export const validationSchema = Yup.object({
   inStock: Yup.boolean().required(),
 });
 
+export const validationSchema1 = Yup.object({
+  email: Yup.string().email().required(),
+  password: Yup.string().required().min(8),
+});
+
 export const useIndex = create((set) => ({
   index: -1,
   setIndex: (data) => set(() => ({ index: data })),

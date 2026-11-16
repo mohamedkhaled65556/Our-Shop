@@ -1,6 +1,7 @@
 import toast, { Toaster } from "react-hot-toast"
 import CartComponenet from "../components/CartComponenet"
 import { useCart, useLimit, useProducts } from "../store"
+import SearchAndShowAll from "../components/SearchAndShowAll"
 
 export default function HomePage() {
 
@@ -30,7 +31,10 @@ export default function HomePage() {
     }
     return (
         <div>
+            <div className="flex justify-between items-strat">
             <CartComponenet />
+            <SearchAndShowAll />
+            </div>
             <Toaster
                 toastOptions={{
                     style: {

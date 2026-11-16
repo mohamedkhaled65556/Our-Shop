@@ -7,7 +7,7 @@ export default function MainHeader() {
                 <h1 className="font-black text-gray-100 text-3xl">Our Shop</h1>
                 <nav className="flex gap-4">
                     <Link to="/">Shop</Link>
-                    <Link to="/admin">Admin</Link>
+                    <Link to="/login">Admin</Link>
                 </nav>
             </div>
         </div>
