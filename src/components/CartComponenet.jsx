@@ -55,7 +55,7 @@ export default function CartComponenet() {
                                 return (
                                     <div className="flex items-start gap-3 py-4 shadow-sm" key={index}>
                                         <img src={el.imgSrc} width={50} />
-                                        <li className="text-[14px] font-semibold mt-6 -ml-2">{el.price}$</li>
+                                        <li className="text-[14px] font-semibold mt-7">{el.price}$</li>
                                         <div className="flex flex-col justify-center items-center">
                                             <li className="text-lg font-semibold -ml-15">{el.name}</li>
                                             <button><FaTrashAlt className="text-red-500 bg-red-200 p-2 rounded-2xl hover:bg-red-300 text-4xl cursor-pointer" onClick={() => {
