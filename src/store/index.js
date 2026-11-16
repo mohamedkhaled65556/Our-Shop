@@ -4,7 +4,7 @@ import * as Yup from "yup";
 export const validationSchema = Yup.object({
   name: Yup.string().required().min(4),
   price: Yup.number().required().min(1).max(5000),
-  imgSrc: Yup.string().url(),
+  imgSrc: Yup.string().url().required(),
   inStock: Yup.boolean().required(),
 });
 
