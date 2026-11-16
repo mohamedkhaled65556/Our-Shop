@@ -11,6 +11,7 @@ export default function LoginPage() {
     const checkPassword = (values) => {
         if (values.email === "admin@gmail.com" && values.password === "12345678") {
             navigator(`/${randomUUID}admin`)
+            sessionStorage.setItem("randomUUID", JSON.stringify(randomUUID))
             setLogged(true)
             sessionStorage.setItem(`${randomUUID}loggid`, JSON.stringify(true))
             toast.success("Login Success", { duration: 3000 })

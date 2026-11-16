@@ -20,7 +20,6 @@ export default function SearchAndShowAll() {
 
     useEffect(() => {
         setProducts(copyProducts)
-        sessionStorage.setItem("randomUUID", JSON.stringify(randomUUID))
     }, [])
 
     const SearchList = () => {
