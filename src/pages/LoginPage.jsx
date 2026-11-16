@@ -1,16 +1,17 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { useProducts, validationSchema1 } from "../store"
+import { useLogged, validationSchema1 } from "../store"
 import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 
 export default function LoginPage() {
-
-    const { products, setProducts } = useProducts()
     const navigator = useNavigate()
+    const { isLogged, setLogged } = useLogged()
 
     const checkPassword = (values) => {
         if (values.email === "admin@gmail.com" && values.password === "12345678") {
             navigator("/admin")
+            setLogged(true)
+            sessionStorage.setItem("logged", JSON.stringify(!isLogged))
             toast.success("Login Success", { duration: 3000 })
         }
         else toast.error("Invalid Email or Password", { duration: 3000 })
@@ -18,13 +19,7 @@ export default function LoginPage() {
 
     return (
         <div className="w-full h-dvh overflow-auto flex justify-center items-center">
-            <Toaster
-                toastOptions={{
-                    style: {
-                        background: '#363636',
-                        color: '#fff',
-                    }
-                }} />
+            <Toaster />
             <Formik
                 onSubmit={(values, { resetForm }) => {
                     checkPassword(values);
@@ -46,7 +41,6 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         className="btn btn-neutral mt-4"
-                        onClick={() => localStorage.setItem("products", JSON.stringify(products))}
                     >Login</button>
                 </Form>
             </Formik>

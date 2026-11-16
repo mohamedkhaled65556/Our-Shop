@@ -1,9 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useProducts, validationSchema } from "../store";
+import { useCopyProducts, useProducts, validationSchema } from "../store";
 import toast from "react-hot-toast";
 
 export default function NewPhoneModal() {
     const { products, setProducts } = useProducts();
+    const { copyProducts, setCopyProducts } = useCopyProducts()
 
     const addNewPhone = (values) => {
         let product = products.filter((el) => {
@@ -17,10 +18,11 @@ export default function NewPhoneModal() {
             let copy = [...products]
             copy.push(values)
             setProducts(copy)
+            setCopyProducts(copy)
             localStorage.setItem("products", JSON.stringify(copy))
             toast.success("Item is Added", { duration: 3000 })
         }
-        else toast.error("Item is already exist name", { duration: 3000 })
+        else toast.error("Item is already exist Name", { duration: 3000 })
     }
     return (
         <dialog id="new-phone-modal" className="modal">

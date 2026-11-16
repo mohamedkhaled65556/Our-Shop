@@ -1,10 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useIndex, useProducts, validationSchema } from "../store";
+import { useCopyProducts, useIndex, useProducts, validationSchema } from "../store";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function EditPhoneModal() {
     const { products, setProducts } = useProducts();
+    const { copyProducts, setCopyProducts } = useCopyProducts()
     const { index, setIndex } = useIndex();
 
     const [product, setProduct] = useState({})
@@ -27,19 +28,20 @@ export default function EditPhoneModal() {
         }
         else {
             if (copy[index].name != values.name) {
-                toast.error("Item is already exist name", { duration: 3000 })
+                toast.error("Item is already exist Name", { duration: 3000 })
                 values.name = product.name
             }
         }
         if (copy[index].price != values.price) {
             copy[index].price = values.price
-            toast.success("Item is changed price", { duration: 3000 })
+            toast.success("Item is changed Price", { duration: 3000 })
         }
         if (copy[index].inStock != values.inStock) {
             copy[index].inStock = values.inStock
-            toast.success("Item is changed in stock or not", { duration: 3000 })
+            toast.success("Item is changed In Stock or Out", { duration: 3000 })
         }
         setProducts(copy)
+        setCopyProducts(copy)
         localStorage.setItem("products", JSON.stringify(copy))
     }
     return (

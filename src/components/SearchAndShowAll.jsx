@@ -1,28 +1,25 @@
 import { useEffect, useRef, useState } from "react";
-import { useProducts } from "../store"
+import { useCopyProducts, useProducts } from "../store"
 
 export default function SearchAndShowAll() {
 
     const { products, setProducts } = useProducts()
+    const { copyProducts, setCopyProducts } = useCopyProducts()
     let searchInput = useRef();
     const [list, setList] = useState(products)
-    const [copyProducts, setCopyProducts] = useState(JSON.parse(localStorage.getItem("products")) || [...products])
-
-    const [allProducts, setAllProducts] = useState(JSON.parse(localStorage.getItem("products")) || [...products])
+    
     const ShowAll = () => {
         setProducts(copyProducts)
         searchInput.current.value = ""
     }
 
     useEffect(() => {
-        setList(allProducts)
+        setList(copyProducts)
     }, [products])
 
-    useEffect(() => {
+    useEffect(()=>{
         setProducts(copyProducts)
-    }, [])
-
-
+    },[])
 
     const SearchList = () => {
         setList(products.filter((el) => {

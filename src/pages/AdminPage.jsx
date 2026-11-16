@@ -1,16 +1,22 @@
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import NewPhoneModal from "../components/NewPhoneModal";
-import { useIndex, useProducts } from "../store"
+import { useCopyProducts, useIndex, useProducts } from "../store"
 import EditPhoneModal from "../components/EditPhoneModal";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from 'sweetalert2';
 import SearchAndShowAll from "../components/SearchAndShowAll";
+import { useEffect } from "react";
 
 export default function AdminPage() {
-
     const { products, setProducts } = useProducts();
+    const { copyProducts, setCopyProducts } = useCopyProducts()
     const { index, setIndex } = useIndex();
+
+    useEffect(() => {
+        setProducts(copyProducts)
+        localStorage.setItem("products", JSON.stringify(copyProducts))
+    }, [])
 
     const RemoveItem = async (index) => {
         const result = await Swal.fire({
@@ -29,6 +35,7 @@ export default function AdminPage() {
             copy.splice(index, 1)
             toast.success("Item Is Deleted", { duration: 3000 })
             setProducts(copy)
+            setCopyProducts(copy)
             localStorage.setItem("products", JSON.stringify(copy))
         }
     }

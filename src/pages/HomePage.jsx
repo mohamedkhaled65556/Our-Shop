@@ -4,10 +4,10 @@ import { useCart, useLimit, useProducts } from "../store"
 import SearchAndShowAll from "../components/SearchAndShowAll"
 
 export default function HomePage() {
-
     const { products, setProducts } = useProducts()
     const { cart, setCart } = useCart()
     const { limit, setLimit } = useLimit()
+
 
     const addToCart = (index) => {
         if (JSON.parse(products[index].inStock)) {
