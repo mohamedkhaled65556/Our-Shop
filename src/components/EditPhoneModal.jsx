@@ -40,6 +40,10 @@ export default function EditPhoneModal() {
             copy[index].inStock = values.inStock
             toast.success("Item is changed In Stock or Out", { duration: 3000 })
         }
+        if (copy[index].imgSrc != values.imgSrc) {
+            copy[index].imgSrc = values.imgSrc
+            toast.success("Item is changed imgSrc", { duration: 3000 })
+        }
         setProducts(copy)
         setCopyProducts(copy)
         localStorage.setItem("products", JSON.stringify(copy))
