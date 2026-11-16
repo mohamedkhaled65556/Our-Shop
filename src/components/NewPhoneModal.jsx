@@ -27,10 +27,11 @@ export default function NewPhoneModal() {
             <div className="modal-box">
                 <h3 className="font-bold text-lg">Add Product</h3>
                 <div className="modal-action">
-                    <Formik onSubmit={(values, { resetForm }) => {
-                        addNewPhone(values);
-                        resetForm();
-                    }}
+                    <Formik
+                        onSubmit={(values, { resetForm }) => {
+                            addNewPhone(values);
+                            resetForm();
+                        }}
                         initialValues={{ name: "", price: "", inStock: false, imgSrc: "" }}
                         validationSchema={validationSchema}>
                         <Form className="flex flex-col gap-3 w-full">
