@@ -20,17 +20,27 @@ export default function EditPhoneModal() {
             existProduct = [{ name: "" }]
         }
         let isFound = existProduct[0].name.toLowerCase().replace(/\s/g, "") == values.name.toLowerCase().replace(/\s/g, "")
+        let copy = [...products]
         if (!isFound) {
-            let copy = [...products]
             copy[index] = values
-            setProducts(copy)
-            localStorage.setItem("products", JSON.stringify(copy))
             toast.success("Item is Updated", { duration: 3000 })
         }
         else {
-            toast.error("Item is already exist", { duration: 3000 })
-            values.name = product.name
+            if (copy[index].name != values.name) {
+                toast.error("Item is already exist name", { duration: 3000 })
+                values.name = product.name
+            }
         }
+        if (copy[index].price != values.price) {
+            copy[index].price = values.price
+            toast.success("Item is changed price", { duration: 3000 })
+        }
+        if (copy[index].inStock != values.inStock) {
+            copy[index].inStock = values.inStock
+            toast.success("Item is changed in stock or not", { duration: 3000 })
+        }
+        setProducts(copy)
+        localStorage.setItem("products", JSON.stringify(copy))
     }
     return (
         <dialog id="edit-phone-modal" className="modal">
@@ -55,9 +65,11 @@ export default function EditPhoneModal() {
                                 <option value={false}>Out Of Stock</option>
                             </Field>
                             <ErrorMessage name="inStock" className="text-red-500" component={"p"} />
-                            <button onClick={() => {
-                                document.getElementById('edit-phone-modal').close()
-                            }} className="btn btn-success w-full">Update Product</button>
+                            <button
+                                type="submit"
+                                onClick={() => {
+                                    document.getElementById('edit-phone-modal').close()
+                                }} className="btn btn-success w-full">Update Product</button>
                         </Form>
                     </Formik>
                 </div>

@@ -20,7 +20,7 @@ export default function NewPhoneModal() {
             localStorage.setItem("products", JSON.stringify(copy))
             toast.success("Item is Added", { duration: 3000 })
         }
-        else toast.error("Item is already exist", { duration: 3000 })
+        else toast.error("Item is already exist name", { duration: 3000 })
     }
     return (
         <dialog id="new-phone-modal" className="modal">
@@ -45,7 +45,9 @@ export default function NewPhoneModal() {
                                 <option value={false}>Out Of Stock</option>
                             </Field>
                             <ErrorMessage name="inStock" className="text-red-500" component={"p"} />
-                            <button onClick={() => document.getElementById('new-phone-modal').close()} className="btn btn-success w-full">Save Product</button>
+                            <button
+                                type="submit"
+                                onClick={() => document.getElementById('new-phone-modal').close()} className="btn btn-success w-full">Save Product</button>
                         </Form>
                     </Formik>
                 </div>

@@ -6,16 +6,23 @@ export default function SearchAndShowAll() {
     const { products, setProducts } = useProducts()
     let searchInput = useRef();
     const [list, setList] = useState(products)
+    const [copyProducts, setCopyProducts] = useState(JSON.parse(localStorage.getItem("products")) || [...products])
 
-    let allProducts = JSON.parse(localStorage.getItem("products"))
+    const [allProducts, setAllProducts] = useState(JSON.parse(localStorage.getItem("products")) || [...products])
     const ShowAll = () => {
-        setProducts(allProducts)
+        setProducts(copyProducts)
         searchInput.current.value = ""
     }
 
     useEffect(() => {
         setList(allProducts)
     }, [products])
+
+    useEffect(() => {
+        setProducts(copyProducts)
+    }, [])
+
+
 
     const SearchList = () => {
         setList(products.filter((el) => {

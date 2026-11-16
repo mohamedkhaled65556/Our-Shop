@@ -55,24 +55,24 @@ export default function CartComponenet() {
                                 return (
                                     <div className="flex items-start gap-3 py-4 shadow-sm" key={index}>
                                         <img src={el.imgSrc} width={50} />
-                                        <li className="font-semibold mt-5">{el.price}$</li>
+                                        <li className="text-[14px] font-semibold mt-6 -ml-2">{el.price}$</li>
                                         <div className="flex flex-col justify-center items-center">
-                                            <li className="font-semibold -ml-15">{el.name}</li>
+                                            <li className="text-lg font-semibold -ml-15">{el.name}</li>
                                             <button><FaTrashAlt className="text-red-500 bg-red-200 p-2 rounded-2xl hover:bg-red-300 text-4xl cursor-pointer" onClick={() => {
                                                 remove(index)
                                             }} /></button>
                                         </div>
                                         <div className="flex items-center">
-                                            <button className="btn btn-success w-3 mx-3 my-3" onClick={() => Increase(index)}>+</button>
-                                            <h1>{+el.qty}</h1>
-                                            <button className="btn btn-error w-3 mx-3 my-3" onClick={() => Decrease(index)}>-</button>
+                                            <button className="btn btn-success w-3 mx-3 my-4 text-lg font-semibold" onClick={() => Increase(index)}>+</button>
+                                            <h1 className="font-semibold">{+el.qty}</h1>
+                                            <button className="btn btn-error w-3 mx-3 my-4 text-lg font-semibold" onClick={() => Decrease(index)}>-</button>
                                         </div>
                                     </div>
                                 )
                             })
                         }
                         <div className="alert alert-info">
-                            <h1 className=" font-semibold mt-auto">Total : {total}</h1>
+                            <h1 className="text-lg font-semibold p-1">Total : {total}</h1>
                         </div>
                     </ul>
                 </div>

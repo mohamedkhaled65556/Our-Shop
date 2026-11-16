@@ -32,16 +32,10 @@ export default function HomePage() {
     return (
         <div>
             <div className="flex justify-between items-strat">
-            <CartComponenet />
-            <SearchAndShowAll />
+                <CartComponenet />
+                <SearchAndShowAll />
             </div>
-            <Toaster
-                toastOptions={{
-                    style: {
-                        background: '#363636',
-                        color: '#fff',
-                    }
-                }} />
+            <Toaster />
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 px-30 py-10">
                 {
                     products.map((el, index) => {

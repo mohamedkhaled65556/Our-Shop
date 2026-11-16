@@ -35,13 +35,7 @@ export default function AdminPage() {
 
     return (
         <div className="flex justify-center">
-            <Toaster position="buttom-right"
-                toastOptions={{
-                    style: {
-                        background: '#363636',
-                        color: '#fff',
-                    }
-                }} />
+            <Toaster />
             <div className="container">
                 <div className="flex items-center justify-between py-4">
                     <h1 className="text-2xl font-bold p-3">Admin Products</h1>
