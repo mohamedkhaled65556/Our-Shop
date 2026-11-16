@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useCopyProducts, useProducts } from "../store"
+import { useCopyProducts, useProducts, useRandomUUID } from "../store"
 
 export default function SearchAndShowAll() {
 
@@ -7,7 +7,8 @@ export default function SearchAndShowAll() {
     const { copyProducts, setCopyProducts } = useCopyProducts()
     let searchInput = useRef();
     const [list, setList] = useState(products)
-    
+    const { randomUUID } = useRandomUUID()
+
     const ShowAll = () => {
         setProducts(copyProducts)
         searchInput.current.value = ""
@@ -17,9 +18,10 @@ export default function SearchAndShowAll() {
         setList(copyProducts)
     }, [products])
 
-    useEffect(()=>{
+    useEffect(() => {
         setProducts(copyProducts)
-    },[])
+        sessionStorage.setItem("randomUUID", JSON.stringify(randomUUID))
+    }, [])
 
     const SearchList = () => {
         setList(products.filter((el) => {

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useLogged } from "../store";
+import { useLogged, useRandomUUID } from "../store";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { VscError } from "react-icons/vsc";
 
 export default function MainHeader() {
     const { isLogged, setLogged } = useLogged()
+    const { randomUUID } = useRandomUUID()
 
     return (
         <div className="w-full bg-gray-950 py-4 flex justify-center">
@@ -21,9 +22,9 @@ export default function MainHeader() {
                         </div>
                     )}</h1>
                     <Link to="/" className="font-bold">Shop</Link>
-                    <Link to={isLogged ? '/admin' : '/login'} className="font-bold">Admin</Link>
+                    <Link to={isLogged ? `/${randomUUID}admin` : `/${randomUUID}login`} className="font-bold">Admin</Link>
                 </nav>
             </div>
-        </div>
+        </div >
     )
 }

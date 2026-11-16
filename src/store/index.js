@@ -66,7 +66,7 @@ export const useCart = create((set) => ({
 }));
 
 export const useLimit = create((set) => ({
-  limit: 0,
+  limit: JSON.parse(localStorage.getItem("limit")) || 0,
   setLimit: (data) => set(() => ({ limit: data })),
 }));
 
@@ -112,7 +112,15 @@ export const useCopyProducts = create((set) => ({
   setCopyProducts: (data) => set(() => ({ copyProducts: [...data] })),
 }));
 
+export const useRandomUUID = create(() => ({
+  randomUUID:
+    JSON.parse(sessionStorage.getItem("randomUUID")) || crypto.randomUUID(),
+}));
+
 export const useLogged = create((set) => ({
-  isLogged: JSON.parse(sessionStorage.getItem("logged")) || false,
+  isLogged:
+    JSON.parse(
+      sessionStorage.getItem(`${useRandomUUID.getState().randomUUID}loggid`),
+    ) || false,
   setLogged: (data) => set(() => ({ isLogged: data })),
 }));

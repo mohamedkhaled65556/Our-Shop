@@ -13,8 +13,9 @@ export default function CartComponenet() {
             let copy = [...cart]
             copy[index].qty++
             setCart(copy)
-            setLimit(limit + 1)
             localStorage.setItem("cart", JSON.stringify(copy))
+            setLimit(limit + 1)
+            localStorage.setItem("limit", JSON.stringify(limit + 1))
         }
         else toast.error("Qty limited to 10 Items", { duration: 3000 })
     }
@@ -27,16 +28,18 @@ export default function CartComponenet() {
         else copy.splice(index, 1)
 
         setCart(copy)
-        setLimit(limit - 1)
         localStorage.setItem("cart", JSON.stringify(copy))
+        setLimit(limit - 1)
+        localStorage.setItem("limit", JSON.stringify(limit - 1))
     }
 
     const remove = (index) => {
         let copy = [...cart]
         copy.splice(index, 1)
         setCart(copy)
-        setLimit(limit - cart[index].qty)
         localStorage.setItem("cart", JSON.stringify(copy))
+        setLimit(limit - cart[index].qty)
+        localStorage.setItem("limit", JSON.stringify(limit - cart[index].qty))
     }
 
     return (

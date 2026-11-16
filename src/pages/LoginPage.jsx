@@ -1,17 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { useLogged, validationSchema1 } from "../store"
+import { useLogged, useRandomUUID, validationSchema1 } from "../store"
 import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 
 export default function LoginPage() {
     const navigator = useNavigate()
     const { isLogged, setLogged } = useLogged()
+    const { randomUUID } = useRandomUUID()
 
     const checkPassword = (values) => {
         if (values.email === "admin@gmail.com" && values.password === "12345678") {
-            navigator("/admin")
+            navigator(`/${randomUUID}admin`)
             setLogged(true)
-            sessionStorage.setItem("logged", JSON.stringify(!isLogged))
+            sessionStorage.setItem(`${randomUUID}loggid`, JSON.stringify(true))
             toast.success("Login Success", { duration: 3000 })
         }
         else toast.error("Invalid Email or Password", { duration: 3000 })
