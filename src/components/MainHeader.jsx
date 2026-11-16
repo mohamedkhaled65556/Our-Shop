@@ -22,7 +22,7 @@ export default function MainHeader() {
                         </div>
                     )}</h1>
                     <Link to="/" className="font-bold">Shop</Link>
-                    <Link to={isLogged ? `/${randomUUID}admin` : `/${randomUUID}login`} className="font-bold">Admin</Link>
+                    <Link to={isLogged ? `/${randomUUID}admin` : "/login"} className="font-bold">Admin</Link>
                 </nav>
             </div>
         </div >

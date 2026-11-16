@@ -16,7 +16,7 @@ export default function App() {
 				<MainHeader />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path={`/${randomUUID}login`} element={<LoginPage />} />
+					<Route path="/login" element={<LoginPage />} />
 					<Route path={`/${randomUUID}admin`} element={<AdminPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
