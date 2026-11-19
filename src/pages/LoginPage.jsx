@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import { useLogged, useRandomUUID, validationSchema1 } from "../store"
 import { useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
+import { login } from "../store/auth"
 
 export default function LoginPage() {
     const navigator = useNavigate()
@@ -9,7 +10,7 @@ export default function LoginPage() {
     const { randomUUID } = useRandomUUID()
 
     const checkPassword = (values) => {
-        if (values.email === "admin@gmail.com" && values.password === "12345678") {
+        if (login(values)) {
             navigator(`/${randomUUID}admin`)
             sessionStorage.setItem("randomUUID", JSON.stringify(randomUUID))
             setLogged(true)

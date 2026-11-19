@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useLogged, useRandomUUID } from "../store";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { VscError } from "react-icons/vsc";
@@ -21,8 +21,16 @@ export default function MainHeader() {
                             <VscError className="text-xl mr-0.5 font-bold" /> Logged Out
                         </div>
                     )}</h1>
-                    <Link to="/" className="font-bold">Shop</Link>
-                    <Link to={isLogged ? `/${randomUUID}admin` : "/login"} className="font-bold">Admin</Link>
+                    <NavLink to="/" className={({ isActive }) =>
+                        isActive
+                            ? "text-gray-500 bg-white rounded-2xl px-1"
+                            : "text-white hover:text-gray-300"
+                    }>Shop</NavLink>
+                    <NavLink to={isLogged ? `/${randomUUID}admin` : "/login"} className={({ isActive }) =>
+                        isActive
+                            ? "text-gray-500 bg-white rounded-2xl px-1"
+                            : "text-white hover:text-gray-300"
+                    }>Admin</NavLink>
                 </nav>
             </div>
         </div >

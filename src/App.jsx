@@ -10,7 +10,7 @@ export default function App() {
 	const { randomUUID } = useRandomUUID()
 
 	return (
-		<div className="w-full h-dvh overflow-auto"
+		<div className="w-full h-dvh overflow-auto font-mohamed font-medium"
 			data-theme="light">
 			<BrowserRouter>
 				<MainHeader />
