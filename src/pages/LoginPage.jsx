@@ -36,11 +36,11 @@ export default function LoginPage() {
 
                     <label className="label mt-4">Email</label>
                     <Field type="email" className="input w-full" placeholder="Email" name="email" />
-                    <ErrorMessage name="email" className="text-red-500" component={"p"} />
+                    <ErrorMessage name="email" className="text-red-500 -mt-2" component={"p"} />
 
                     <label className="label mt-4">Password</label>
                     <Field type="password" className="input w-full" placeholder="Password" name="password" />
-                    <ErrorMessage name="password" className="text-red-500" component={"p"} />
+                    <ErrorMessage name="password" className="text-red-500 -mt-2" component={"p"} />
                     <button
                         type="submit"
                         className="btn btn-neutral mt-4"

@@ -36,18 +36,18 @@ export default function NewPhoneModal() {
                         }}
                         initialValues={{ name: "", price: "", inStock: false, imgSrc: "" }}
                         validationSchema={validationSchema}>
-                        <Form className="flex flex-col gap-3 w-full">
+                        <Form className="flex flex-col gap-4 w-full">
                             <Field name="name" type="text" className="input w-full" placeholder="Enter Phone Name" />
-                            <ErrorMessage name="name" className="text-red-500" component={"p"} />
+                            <ErrorMessage name="name" className="text-red-500 -mt-3" component={"p"} />
                             <Field name="price" type="number" className="input w-full" placeholder="Enter Phone Price" />
-                            <ErrorMessage name="price" className="text-red-500" component={"p"} />
+                            <ErrorMessage name="price" className="text-red-500 -mt-3" component={"p"} />
                             <Field name="imgSrc" type="text" className="input w-full" placeholder="Enter Image Link" />
-                            <ErrorMessage name="imgSrc" className="text-red-500" component={"p"} />
+                            <ErrorMessage name="imgSrc" className="text-red-500 -mt-3" component={"p"} />
                             <Field component="select" name="inStock" className="select cursor-pointer w-full">
                                 <option value={true}>In Stock</option>
                                 <option value={false}>Out Of Stock</option>
                             </Field>
-                            <ErrorMessage name="inStock" className="text-red-500" component={"p"} />
+                            <ErrorMessage name="inStock" className="text-red-500 -mt-3" component={"p"} />
                             <button
                                 type="submit"
                                 onClick={() => document.getElementById('new-phone-modal').close()} className="btn btn-success w-full">Save Product</button>
